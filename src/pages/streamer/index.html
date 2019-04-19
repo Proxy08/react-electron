@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <link rel="stylesheet" href="../../assets/css/main.css">
+</head>
+
+<body>
+
+    <ph-window>
+
+        <!--Window content here-->
+        <window-content>
+            <div class="container">
+                <video id="video-preview">
+
+                </video>
+
+  
+            </div>
+            </div>
+<div class="header"></div>
+<div id="app">
+    Loading...
+</div>
+            <footer>
+                <div id="left-container">
+                    <button id="captureCamera">Capture Camera </button>
+                    <button id="captureScreen">Capture Ecran </button>
+
+                </div>
+            </footer>
+        </window-content>
+        <!--Bottom footer bar here-->
+        <tool-bar type="footer">
+            Footer Header
+        </tool-bar>
+    </ph-window>
+    <script src="../mixer.js">
+
+    </script>
+    <script src="../Thread.js">
+
+    </script>
+    <script src="../capture.js"></script>
+    <script>
+        if (process && process.env.NODE_ENV === 'DEV') {
+            console.log('env');
+            document.title += ' (DEV MODE)';
+        }
+    </script>
+    <script>
+        
+        var bundlePath = './bundle/renderer.bundle.js';
+        
+        if(typeof process !== 'undefined' && process.env.NODE_ENV === 'DEV') {
+        const port = process.env.PORT || 8080;
+        console.log(port)
+        bundlePath = `http://127.0.0.1:${port}/bundle/renderer.bundle.js`;
+        var bundleScriptEl = document.createElement('script');
+        bundleScriptEl.src = bundlePath;
+        bundleScriptEl.async = true;
+        document.currentScript.parentNode.insertBefore(bundleScriptEl, document.currentScript);
+        } else {
+        require(bundlePath);
+        }
+        
+        </script>
+    <script>
+        const { ipcRenderer } = global.require('electron');
+   
+        const Photon = require("electron-photon");
+       // require('./index.js');
+       // const { width, height } = electron.screen.getPrimaryDisplay().workAreaSize
+    </script>
+    
+    <style>
+        video {
+            width: 1000px;
+            height: 400px;
+    
+        }
+    
+        </style>
+</body>
+
+</html>
